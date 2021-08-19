@@ -496,6 +496,9 @@ step-gn-check: &step-gn-check
       # Check the hunspell filenames
       node electron/script/gen-hunspell-filenames.js --check
       node electron/script/gen-libc++-filenames.js --check
+      # Check for crash buildflag header
+      gn check out/Default //components/crash/core/common:crash_buildflags
+      python build/write_buildflag_header.py
 
 step-electron-build: &step-electron-build
   run:
